@@ -1,6 +1,6 @@
 # Base image
 FROM node:18
-FROM ghcr.io/puppeteer/puppeteer:19.7.4
+FROM ghcr.io/puppeteer/puppeteer:19.7.5
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
