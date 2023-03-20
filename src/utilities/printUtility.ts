@@ -62,10 +62,10 @@ export const printPdf = async (templatePath, data, pOutputType) => {
 
   await browser.close();
 
-  // fs.unlink(pdfPath, function (err) {
-  //   if (err) throw err;
-  //   console.log('Temp File deleted!');
-  // });
+  fs.unlink(pdfPath, function (err) {
+    if (err) throw err;
+    console.log('Temp File deleted!');
+  });
 
   return pdf;
 };
