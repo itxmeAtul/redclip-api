@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 const handlebars = require('handlebars');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config();
 
 export const printPdf = async (templatePath, data, pOutputType) => {
   const templateHtml = fs.readFileSync(
@@ -45,6 +46,16 @@ export const printPdf = async (templatePath, data, pOutputType) => {
   const browser = await puppeteer.launch({
     // args: ["--no-sandbox"],
     headless: true,
+    executablePath:
+      process.env.NODE_ENV === 'production'
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
+    args: [
+      '--disable-setuid-sandbox',
+      '--no-sandbox',
+      '--single-process',
+      '--no-zygote',
+    ],
   });
 
   if (pOutputType === 'HTML') {
